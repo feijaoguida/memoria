@@ -22,19 +22,29 @@ cards.forEach((card) => {
   card.addEventListener("click", flipcard);
 });
 
+function resetGame() {
+  cards.forEach((card) => {
+    card.classList.remove("flip");
+    card.addEventListener("click", flipcard);
+
+    let ramdomPosition = Math.floor(Math.random() * 12);
+    card.style.order = ramdomPosition;
+  });
+  resetBoard();
+  shuffle();
+}
+
 function checkForMatch() {
   if (firstCard.dataset.cart === secondCard.dataset.cart) {
     disableCards();
     return;
   }
-
   unflipCards();
 }
 
 function disableCards() {
   firstCard.removeEventListener("click", flipcard);
   secondCard.removeEventListener("click", flipcard);
-
   resetBoard();
 }
 
